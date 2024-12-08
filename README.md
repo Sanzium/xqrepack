@@ -14,20 +14,25 @@ Once you have SSH, you can use this repacking method to maintain SSH access for 
 Requirements
 ==============
 
-You will need to install the following tools:
+You will need to install the the tools that provide the following commands:
 
-- [ubi_reader](https://github.com/jrspruitt/ubi_reader)
-- ubinize
-- unsquashfs / mksquashfs
-- fakeroot
+- `ubireader_extract_images` from [ubi_reader](https://github.com/jrspruitt/ubi_reader)
+  - Available on PyPI: `pip install ubi_reader`
+- `ubinize` from [mtd-utils](https://git.infradead.org/mtd-utils.git)
+  - Generally available through your system package manager (e.g. [Debian](https://packages.debian.org/sid/mtd-utils))
+- `unsquashfs` / `mksquashfs` from [squashfs-tools](https://github.com/plougher/squashfs-tools)
+  - Generally available through your system package manager (e.g. [Debian](https://packages.debian.org/sid/squashfs-tools)
+  - There is also [squashfs-tools-ng](https://github.com/AgentD/squashfs-tools-ng), some distros have it instead of squashfs-tools.
+    - On squashfs-tools-ng, `unsquashfs` = `rdsquashfs` and `mksquashfs` = `gensquashfs`
+- `fakeroot` from [fakeroot](https://tracker.debian.org/pkg/fakeroot)
 
 Usage
 =======
 
-1. Download the firmware from miwifi.com.
+1. Download the firmware from [MiWifi](https://www.miwifi.com/miwifi_download.html).
    It should be something like `miwifi_r3600_firmware_xxxx_y.y.yyy.bin` or `miwifi_rm1800_firmware_xxxx_y.y.yyy.bin`.
 
-2. Use the `ubireader_extract_images` utility from ubi_reader to unpack the UBI image from the firmware.
+2. Use the `ubireader_extract_images` utility from _ubi_reader_ to unpack the UBI image from the firmware.
    Technically there's junk at the front, but the script will ignore it:
 
         ubireader_extract_images -w miwifi_r3600_firmware_xxx_yyy.bin
